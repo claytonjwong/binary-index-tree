@@ -5,15 +5,13 @@ class BIT():
         for i in range(self.N):
             k = i + 1
             while k <= self.N:
-                self.S[k] += self.A[i]
-                k = self.next(k)
+                self.S[k] += self.A[i]; k = self.next(k)
 
     def update(self, i, x):
         diff, self.A[i] = x - self.A[i], x
         i += 1
         while i <= self.N:
-            self.S[i] += diff
-            i = self.next(i)
+            self.S[i] += diff; i = self.next(i)
 
     def query(self, i):
         t = 0
