@@ -13,16 +13,13 @@ class BIT {
             this.S[k] += diff;
     }
     sum = (i, j) => this.query(j + 1) - this.query(i);
-    query = (i, t = 0) => {
-        while (i)
-            t += this.S[i], i = this.prev(i);
-        return t;
-    }
+    query = i => i ? this.S[i] + this.query(this.prev(i)) : 0;
     prev = i => i - (i & ~i + 1);
     next = i => i + (i & ~i + 1);
 }
+
 A = [1,2,3,4,5,6,7,8,9,10];
 //   0 1 2 3 4 5 6 7 8 9
 let bit = new BIT(A);
 console.log(bit.sum(0, 4))  // A[0..4] = 15 = 1 + 2 + 3 + 4 + 5
-console.log(bit.sum(0, 9))  // A[0..9) = 55 = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
+console.log(bit.sum(0, 9))  // A[0..9] = 55 = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
