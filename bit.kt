@@ -1,4 +1,4 @@
-class NumArray(A: IntArray) {
+class BIT(A: IntArray) {
     var A: IntArray
     var S: IntArray
     var N: Int
@@ -22,13 +22,6 @@ class NumArray(A: IntArray) {
             S[k] += diff; k = next(k)
         }
     }
-    fun query(i_: Int): Int {
-        var t = 0
-        var i = i_
-        while (0 < i) {
-            t += S[i]; i = prev(i)
-        }
-        return t
-    }
-    var sumRange = { i: Int, j: Int -> query(j + 1) - query(i) }
+    fun query(i: Int): Int { return if (0 < i) S[i] + query(prev(i)) else 0 }
+    var sum = { i: Int, j: Int -> query(j + 1) - query(i) }
 }
