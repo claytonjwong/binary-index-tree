@@ -19,13 +19,12 @@ class BIT():
             t += self.S[i]; i = self.prev(i)
         return t
 
-    sum = lambda self, i, j: self.query(j) - self.query(i)
+    sum = lambda self, i, j: self.query(j + 1) - self.query(i)
     prev = lambda self, i: i - (i & -i)
     next = lambda self, i: i + (i & -i)
 
 A = [1,2,3,4,5,6,7,8,9,10]
 #    0 1 2 3 4 5 6 7 8 9
 bit = BIT(A)
-print(bit.query(4))    # A[0..4)  = 10 = 1 + 2 + 3 + 4
-print(bit.sum(0, 4))   # A[0..4)  = 10 = 1 + 2 + 3 + 4
-print(bit.sum(0, 10))  # A[0..10) = 55 = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
+print(bit.sum(0, 4))  # A[0..4] = 15 = 1 + 2 + 3 + 4 + 5
+print(bit.sum(0, 9))  # A[0..9] = 55 = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10
