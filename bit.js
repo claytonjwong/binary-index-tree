@@ -14,8 +14,8 @@ class BIT {
     }
     sum = (i, j) => this.query(j + 1) - this.query(i);
     query = i => i ? this.S[i] + this.query(this.prev(i)) : 0;
-    prev = i => i - (i & ~i + 1);
-    next = i => i + (i & ~i + 1);
+    prev = i => i - (i & -i);
+    next = i => i + (i & -i);
 }
 
 A = [1,2,3,4,5,6,7,8,9,10];
