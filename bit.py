@@ -1,24 +1,22 @@
-class BIT():
-    def __init__(self, A):
+from typing import List
+class BIT:
+    def __init__(self, A: List[int]):
         self.N = len(A)
         self.A, self.S = A[:], [0] * (self.N + 1)
         for i in range(self.N):
             k = i + 1
             while k <= self.N:
-                self.S[k] += self.A[i]; k = self.next(k)
+                self.S[k] += self.A[i]
+                k = self.next(k)
 
-    def update(self, i, x):
+    def update(self, i: int, x: int) -> None:
         diff, self.A[i] = x - self.A[i], x
-        i += 1
-        while i <= self.N:
-            self.S[i] += diff; i = self.next(i)
+        k = i + 1
+        while k <= self.N:
+            self.S[k] += diff
+            k = self.next(k)
 
-    def query(self, i):
-        t = 0
-        while i:
-            t += self.S[i]; i = self.prev(i)
-        return t
-
+    query = lambda self, i: self.S[i] + self.query(self.prev(i)) if i else 0
     sum = lambda self, i, j: self.query(j + 1) - self.query(i)
     prev = lambda self, i: i - (i & -i)
     next = lambda self, i: i + (i & -i)
