@@ -2,8 +2,8 @@ class BIT(A: IntArray) {
     var A: IntArray
     var S: IntArray
     var N: Int
-    var prev = { i: Int -> i - (i and i.inv() + 1) }
-    var next = { i: Int -> i + (i and i.inv() + 1) }
+    var prev = { i: Int -> i - (i and -i) }
+    var next = { i: Int -> i + (i and -i) }
     init {
         this.A = A
         N = A.size
