@@ -2,17 +2,14 @@
 
 using namespace std;
 
-using LL = long long;
 using VI = vector<int>;
-using VL = vector<LL>;
-class BIT {
-    VI A;
-    VL S;
-    int N;
+class NumArray {
+    VI A, S; size_t N;
     int prev(int i) { return i - (i & -i); }
     int next(int i) { return i + (i & -i); }
+    int query(int i) { return i ? S[i] + query(prev(i)) : 0; }
 public:
-    BIT(const VI& A) : A{ A }, S{ VL(A.size() + 1) }, N{ int(A.size()) } {
+    NumArray(VI& A) : A{ A }, S{ VI(A.size() + 1) }, N{ A.size() } {
         for (auto i{ 0 }; i < N; ++i)
             for (auto k{ i + 1 }; k <= N; k = next(k))
                 S[k] += A[i];
@@ -22,12 +19,5 @@ public:
         for (auto k{ i + 1 }; k <= N; k = next(k))
             S[k] += diff;
     }
-    LL query(int i, int t = 0) {
-        while (i)
-            t += S[i], i = prev(i);
-        return t;
-    }
-    LL sum(int i, int j) {
-        return query(j + 1) - query(i);
-    }
+    int sumRange(int i, int j) { return query(j + 1) - query(i); }
 };
