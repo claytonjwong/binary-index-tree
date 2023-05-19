@@ -12,7 +12,7 @@ Prefix sums with `query` + `update` in `O(logN)` time
 # Implementations
 
 *Kotlin*
-```java
+```kotlin
 class BIT(A: IntArray) {
     var A: IntArray
     var S: IntArray
