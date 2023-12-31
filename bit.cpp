@@ -19,5 +19,5 @@ public:
         for (auto k{ i + 1 }; k <= N; k = next(k))
             S[k] += diff;
     }
-    int sumRange(int i, int j) { return query(j + 1) - query(i); }
+    int sum(int i, int j) { return query(j + 1) - query(i); }
 };
