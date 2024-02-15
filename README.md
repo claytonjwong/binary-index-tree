@@ -1,8 +1,10 @@
 # Binary Index Tree (BIT)
 
-Prefix sums with `query` + `update` in `O(logN)` time
+[Prefix sum](https://en.wikipedia.org/wiki/Prefix_sum) with `query` + `update` in `O(logN)` time
 
-## Naive Prefix Sums
+* [Fenwick tree](https://en.wikipedia.org/wiki/Fenwick_tree)
+
+## Naive Prefix Sum
 
 `query` + `update` a vector in `O(N)` time via two possibilities:
 
